@@ -1,4 +1,5 @@
 import Expenses from "./Components/Expenses";
+import "./App.css";
 
 function App() {
   const expenses = [
@@ -21,10 +22,10 @@ function App() {
   ];
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <h2 className="app">Expense Tracker</h2>
       <Expenses item={expenses} />
     </div>
   );
 }
 
-export default App
+export default App;
