@@ -1,9 +1,9 @@
 import "./ExpenseForm.css";
 import React, { useState } from "react";
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   // Multiple state approach
   const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmounnt, setEnteredAmount] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
 
   // Single state approach instead of multiple states
@@ -44,11 +44,12 @@ const ExpenseForm = () => {
     event.preventDefault();
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmounnt,
+      amount: enteredAmount,
       date: new Date(enteredDate),
     };
 
-    console.log(expenseData);
+    //console.log(expenseData);
+    props.onSaveExpenseData(expenseData);
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
@@ -71,7 +72,7 @@ const ExpenseForm = () => {
             type="number"
             min="0.01"
             step="0.01"
-            value={enteredAmounnt}
+            value={enteredAmount}
             onChange={amountChangeHandler}
           />
         </div>
@@ -87,6 +88,7 @@ const ExpenseForm = () => {
         </div>
       </div>
       <div className="new_expense__actions">
+        <button type="button" onClick={props.onCancel}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
